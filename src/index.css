@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Prata&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+a.active hr{
+    display: block;
+}
+body{
+  background: linear-gradient(135deg, #f5e6d4, #f8eadf, #fdf4e3);
+}
+
+*{
+    font-family: Outfit;
+}
+
+/* Add this to your CSS file if not using Tailwind's utility classes for transition */
+.dropdown-menu {
+  transition: opacity 0.3s ease-in-out;
+}
+
+
+.prata-regular {
+    font-family: "Prata", serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  ::-webkit-scrollbar{
+    display: none;
+  }
+  
+  @media (max-width:640px) {
+    a.active{
+        background-color: black;
+        color: white;
+    }
+  }
