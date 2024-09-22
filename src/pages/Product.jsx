@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { ShopContext } from '../context/ShopContext';
 import { assets } from '../assets/assets';
 import RelatedProducts from '../components/RelatedProducts';
-import { toast } from 'react-toastify'; // Import toast
+import { toast } from 'react-toastify';
 
 const Product = () => {
   const { productId } = useParams();
@@ -12,12 +12,12 @@ const Product = () => {
   const [image, setImage] = useState('');
   const [size, setSize] = useState('');
 
-  const fetchProductData = async () => {
+  const fetchProductData = () => {
     const product = products.find(item => item._id === productId);
     if (product) {
       setProductData(product);
       setImage(product.image[0]);
-      setSize(product.sizes[0]); // Default size
+      setSize(product.sizes[0]);
     } else {
       console.error(`Product with ID ${productId} not found.`);
     }
@@ -32,7 +32,7 @@ const Product = () => {
   const handleAddToCart = () => {
     if (productData && size) {
       addToCart(productData._id, size);
-      toast.success('Item added to cart'); // Show toast notification
+      toast.success('Item added to cart');
     } else {
       console.error('Product data or size is missing');
     }
@@ -44,9 +44,9 @@ const Product = () => {
 
   return (
     <div className='border-t-2 border-gray-400 pt-10 transition-opacity ease-in duration-500 opacity-100'>
-      {/*----------- Product Data-------------- */}
+      {/* Product Data */}
       <div className='flex gap-12 sm:gap-12 flex-col sm:flex-row'>
-        {/*---------- Product Images------------- */}
+        {/* Product Images */}
         <div className='flex-1 flex flex-col-reverse gap-3 sm:flex-row'>
           <div className='flex sm:flex-col overflow-x-auto sm:overflow-y-scroll justify-between sm:justify-normal sm:w-[18.7%] w-full'>
             {
@@ -66,7 +66,7 @@ const Product = () => {
           </div>
         </div>
 
-        {/* -------- Product Info ---------- */}
+        {/* Product Info */}
         <div className='flex-1'>
           <h1 className='font-medium text-2xl mt-2'>{productData.name}</h1>
           <div className='flex items-center gap-1 mt-2'>
@@ -108,10 +108,10 @@ const Product = () => {
         </div>
       </div>
 
-      {/* ---------- Description & Review Section ------------- */}
+      {/* Related Products Section */}
       <div className='mt-14'>
         <h1 className='font-medium text-xl mb-4'>Related Products</h1>
-        <RelatedProducts />
+        <RelatedProducts subCategory={productData.subCategory} currentProductId={productData._id} />
       </div>
     </div>
   );
